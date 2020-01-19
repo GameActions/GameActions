@@ -25,7 +25,11 @@ namespace GameActions
             List<Task> Tasks = new List<Task>();
             foreach (var action in Actions(Object))
                 if (action.gameObject != gameObject)
+                {
                     await action.Act();
+                    if (!Application.isPlaying)
+                        return;
+                }
         }
     }
 }
