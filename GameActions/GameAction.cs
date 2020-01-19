@@ -7,18 +7,18 @@ namespace GameActions
 {
     public abstract class GameAction : MonoBehaviour
     {
-        [SerializeField] private GameObject Object;
+        [SerializeField] private GameObject _Object;
         public GameObject Object
         {
             get
             {
-                if (Object == null)
-                    Object = this.gameObject;
-                return Object;
+                if (_Object == null)
+                    _Object = this.gameObject;
+                return _Object;
             }
             set
             {
-                Object = value;
+                _Object = value;
                 _AnimationToken = null;
             }
         }
