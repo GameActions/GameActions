@@ -1,6 +1,7 @@
-using GameActions.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using GameActions.Utilities;
 using UnityEngine;
 
 namespace GameActions
@@ -22,7 +23,9 @@ namespace GameActions
                 _AnimationToken = null;
             }
         }
+
         private Dictionary<GameObject, AnimationToken> tokens = new Dictionary<GameObject, AnimationToken>();
+
         private AnimationToken _AnimationToken;
         private AnimationToken AnimationToken
         {
@@ -37,11 +40,36 @@ namespace GameActions
                 return _AnimationToken;
             }
         }
-        protected abstract Task Act(GameObject Object, AnimationToken AnimationToken);
-        public Task Act()
+
+        protected abstract Task Act(GameObject Object, Func<Task> Yield);
+
+        private class ActionTerminationException : System.Exception {}
+        public async Task Act()
         {
-            return Act(Object, AnimationToken);
+            var token = AnimationToken.GetToken();
+            async Task Yield()
+            {
+                await Task.Yield();
+                if (!token.IsValid)
+                    throw new ActionTerminationException();
+            }
+            try
+            {
+                await Act(Object, Yield);
+            }
+            catch (ActionTerminationException) {}
         }
-        public void ActReturningVoid() => Act();
+
+        public async void ActReturningVoid()
+        {
+            try
+            {
+                await Act();
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e, this);
+            }
+        }
     }
 }

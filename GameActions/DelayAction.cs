@@ -1,4 +1,4 @@
-using GameActions.Utilities;
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -8,11 +8,11 @@ namespace GameActions
     {
         public float Duration;
 
-        protected override async Task Act(GameObject Object, AnimationToken AnimationToken)
+        protected override async Task Act(GameObject Object, Func<Task> Yield)
         {
             float initial_time = Time.time;
             while (Time.time - initial_time < Duration)
-                await Task.Yield();
+                await Yield();
         }
     }
 }

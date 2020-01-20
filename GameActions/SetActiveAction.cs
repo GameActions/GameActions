@@ -1,4 +1,4 @@
-using GameActions.Utilities;
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -8,7 +8,7 @@ namespace GameActions
     {
         public bool ActivationState = true;
 
-        protected override Task Act(GameObject Object, AnimationToken AnimationToken)
+        protected override Task Act(GameObject Object, Func<Task> Yield)
         {
             Object.SetActive(ActivationState);
             return Task.CompletedTask;

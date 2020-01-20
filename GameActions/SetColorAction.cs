@@ -1,4 +1,4 @@
-using GameActions.Utilities;
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
@@ -36,7 +36,7 @@ namespace GameActions
             Debug.LogWarning("No SpriteRenderer or Image component found on the object", this);
         }
 
-        protected override Task Act(GameObject Object, AnimationToken AnimationToken)
+        protected override Task Act(GameObject Object, Func<Task> Yield)
         {
             SetColor(Object, Target);
             return Task.CompletedTask;

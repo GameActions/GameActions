@@ -1,4 +1,4 @@
-using GameActions.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -20,7 +20,7 @@ namespace GameActions
             return result.ToArray();
         }
 
-        protected override async Task Act(GameObject Object, AnimationToken AnimationToken)
+        protected override async Task Act(GameObject Object, Func<Task> Yield)
         {
             List<Task> Tasks = new List<Task>();
             foreach (var action in Actions(Object))

@@ -1,5 +1,6 @@
-using GameActions.Utilities;
+using System;
 using System.Threading.Tasks;
+using GameActions.Utilities;
 using UnityEngine;
 
 namespace GameActions
@@ -10,9 +11,8 @@ namespace GameActions
         public float Speed = 1;
         public Interpolators.InterpolationType InterpolationType = Interpolators.InterpolationType.ConstantAcceleration;
 
-        protected override async Task Act(GameObject Object, AnimationToken AnimationToken)
+        protected override async Task Act(GameObject Object, Func<Task> Yield)
         {
-            var token = AnimationToken.GetToken();
             var start_pos = Object.transform.localPosition;
             for (float t = 0; t < 1; t += Time.deltaTime * Speed)
             {
@@ -21,9 +21,7 @@ namespace GameActions
                     Destination,
                     Interpolators.Interpolate(InterpolationType, t)
                 );
-                await Task.Yield();
-                if (!token.IsValid)
-                    return;
+                await Yield();
             }
             Object.transform.localPosition = Destination;
         }

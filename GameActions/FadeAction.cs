@@ -1,6 +1,6 @@
-using GameActions.Utilities;
 using System;
 using System.Threading.Tasks;
+using GameActions.Utilities;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -48,10 +48,9 @@ namespace GameActions
             return result;
         }
 
-        protected override async Task Act(GameObject Object, AnimationToken AnimationToken)
+        protected override async Task Act(GameObject Object, Func<Task> Yield)
         {
             var functions = DetermineFunctions(Object);
-            var token = AnimationToken.GetToken();
             var start_color = functions.GetColor();
             for (float t = 0; t < 1; t += Time.deltaTime * Speed)
             {
@@ -60,9 +59,7 @@ namespace GameActions
                     Target,
                     Interpolators.Interpolate(InterpolationType, t)
                 ));
-                await Task.Yield();
-                if (!token.IsValid)
-                    return;
+                await Yield();
             }
             functions.SetColor(Target);
         }

@@ -1,4 +1,4 @@
-using GameActions.Utilities;
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -8,7 +8,7 @@ namespace GameActions
     {
         public AudioClip AudioClip = null;
 
-        protected override Task Act(GameObject Object, AnimationToken AnimationToken)
+        protected override Task Act(GameObject Object, Func<Task> Yield)
         {
             AudioSource AudioSource = Object.GetComponent<AudioSource>();
             if (AudioSource != null)
