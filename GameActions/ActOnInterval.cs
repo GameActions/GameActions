@@ -14,7 +14,7 @@ namespace GameActions
         {
             LastTime = Time.time;
             if (ActOnAwake)
-                Action?.Act();
+                Action?.ActReturningVoid();
         }
 
         private void Update()
@@ -22,7 +22,7 @@ namespace GameActions
             if (LastTime + Interval < Time.time)
             {
                 LastTime = Time.time;
-                Action?.Act();
+                Action?.ActReturningVoid();
             }
         }
     }

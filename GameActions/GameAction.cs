@@ -44,7 +44,7 @@ namespace GameActions
         protected abstract Task Act(GameObject Object, Func<Task> Yield);
 
         private class ActionTerminationException : System.Exception {}
-        public async Task Act()
+        public async Task Act() // TODO: Rename?
         {
             var token = AnimationToken.GetToken();
             async Task Yield()
@@ -60,7 +60,7 @@ namespace GameActions
             catch (ActionTerminationException) {}
         }
 
-        public async void ActReturningVoid()
+        public async void ActReturningVoid() // TODO: Rename to Start?
         {
             try
             {
