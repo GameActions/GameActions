@@ -41,21 +41,47 @@ namespace GameActions
             }
         }
 
-        protected abstract Task Act(GameObject Object, Func<Task> Yield);
+        protected struct ActParameters
+        {
+            /// <summar>The object to act on</summar>
+            public GameObject Object;
+            /// <summar>Use this to yield</summar>
+            public Func<Task> Yield;
+            /// <summar>Use this to await anything the right way</summar>
+            public Func<Task, Task> Await;
+        }
+
+        /// <summary>
+        ///   Do not await anything without using Parameters.Await.
+        ///   Use Parameters.Object if a target GameObject is required.
+        /// </summary>
+        protected abstract Task Act(ActParameters Parameters);
 
         private class ActionTerminationException : System.Exception {}
         public async Task Act() // TODO: Rename?
         {
             var token = AnimationToken.GetToken();
+
+            async Task Await(Task task)
+            {
+                await task;
+                if (!token.IsValid)
+                    throw new ActionTerminationException();
+            }
             async Task Yield()
             {
                 await Task.Yield();
                 if (!token.IsValid)
                     throw new ActionTerminationException();
             }
+
             try
             {
-                await Act(Object, Yield);
+                await Act(new ActParameters {
+                    Object = Object,
+                    Yield = Yield,
+                    Await = Await
+                });
             }
             catch (ActionTerminationException) {}
         }

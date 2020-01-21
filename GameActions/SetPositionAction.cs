@@ -8,9 +8,9 @@ namespace GameActions
     {
         public Vector3 Destination;
 
-        protected override Task Act(GameObject Object, Func<Task> Yield)
+        protected override Task Act(ActParameters Parameters)
         {
-            Object.transform.localPosition = Destination;
+            Parameters.Object.transform.localPosition = Destination;
             return Task.CompletedTask;
         }
     }

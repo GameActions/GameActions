@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace GameActions.Utilities
 {
@@ -8,16 +9,20 @@ namespace GameActions.Utilities
         {
             private int TokenNumber;
             AnimationToken TokenPtr;
+            Scene Scene;
 
             public bool IsValid
             {
-                get => TokenNumber == TokenPtr.CurrentValue && Application.isPlaying;
+                get => TokenNumber == TokenPtr.CurrentValue
+                        && Application.isPlaying
+                        && SceneManager.GetActiveScene() == Scene;
             }
 
-            public Token(AnimationToken TokenPtr)
+            public Token(AnimationToken TokenPtr, Scene Scene)
             {
                 TokenNumber = ++TokenPtr.CurrentValue;
                 this.TokenPtr = TokenPtr;
+                this.Scene = Scene;
             }
         }
 
@@ -25,7 +30,7 @@ namespace GameActions.Utilities
 
         public Token GetToken()
         {
-            return new Token(this);
+            return new Token(this, SceneManager.GetActiveScene());
         }
     }
 }

@@ -20,16 +20,12 @@ namespace GameActions
             return result.ToArray();
         }
 
-        protected override async Task Act(GameObject Object, Func<Task> Yield)
+        protected override async Task Act(ActParameters Parameters)
         {
             List<Task> Tasks = new List<Task>();
-            foreach (var action in Actions(Object))
+            foreach (var action in Actions(Parameters.Object))
                 if (action.gameObject != gameObject)
-                {
-                    await action.Act();
-                    if (!Application.isPlaying)
-                        return;
-                }
+                    await Parameters.Await(action.Act());
         }
     }
 }

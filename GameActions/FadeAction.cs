@@ -48,9 +48,9 @@ namespace GameActions
             return result;
         }
 
-        protected override async Task Act(GameObject Object, Func<Task> Yield)
+        protected override async Task Act(ActParameters Parameters)
         {
-            var functions = DetermineFunctions(Object);
+            var functions = DetermineFunctions(Parameters.Object);
             var start_color = functions.GetColor();
             for (float t = 0; t < 1; t += Time.deltaTime * Speed)
             {
@@ -59,7 +59,7 @@ namespace GameActions
                     Target,
                     Interpolators.Interpolate(InterpolationType, t)
                 ));
-                await Yield();
+                await Parameters.Yield();
             }
             functions.SetColor(Target);
         }

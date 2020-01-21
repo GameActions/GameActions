@@ -11,19 +11,19 @@ namespace GameActions
         public float Speed = 1;
         public Interpolators.InterpolationType InterpolationType = Interpolators.InterpolationType.ConstantAcceleration;
 
-        protected override async Task Act(GameObject Object, Func<Task> Yield)
+        protected override async Task Act(ActParameters Parameters)
         {
-            var start_pos = Object.transform.localPosition;
+            var start_pos = Parameters.Object.transform.localPosition;
             for (float t = 0; t < 1; t += Time.deltaTime * Speed)
             {
-                Object.transform.localPosition = Vector3.Lerp(
+                Parameters.Object.transform.localPosition = Vector3.Lerp(
                     start_pos,
                     Destination,
                     Interpolators.Interpolate(InterpolationType, t)
                 );
-                await Yield();
+                await Parameters.Yield();
             }
-            Object.transform.localPosition = Destination;
+            Parameters.Object.transform.localPosition = Destination;
         }
     }
 }

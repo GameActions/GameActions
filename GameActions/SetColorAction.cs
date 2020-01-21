@@ -36,9 +36,9 @@ namespace GameActions
             Debug.LogWarning("No SpriteRenderer or Image component found on the object", this);
         }
 
-        protected override Task Act(GameObject Object, Func<Task> Yield)
+        protected override Task Act(ActParameters Parameters)
         {
-            SetColor(Object, Target);
+            SetColor(Parameters.Object, Target);
             return Task.CompletedTask;
         }
     }

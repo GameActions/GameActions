@@ -8,9 +8,9 @@ namespace GameActions
     {
         public AudioClip AudioClip = null;
 
-        protected override Task Act(GameObject Object, Func<Task> Yield)
+        protected override Task Act(ActParameters Parameters)
         {
-            AudioSource AudioSource = Object.GetComponent<AudioSource>();
+            AudioSource AudioSource = Parameters.Object.GetComponent<AudioSource>();
             if (AudioSource != null)
             {
                 if (AudioClip != null)

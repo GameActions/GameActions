@@ -6,9 +6,9 @@ namespace GameActions
 {
     public class ToggleActivationAction : GameAction
     {
-        protected override Task Act(GameObject Object, Func<Task> Yield)
+        protected override Task Act(ActParameters Parameters)
         {
-            Object.SetActive(!Object.activeSelf);
+            Parameters.Object.SetActive(!Parameters.Object.activeSelf);
             return Task.CompletedTask;
         }
     }

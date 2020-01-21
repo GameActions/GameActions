@@ -8,9 +8,9 @@ namespace GameActions
     {
         public bool ActivationState = true;
 
-        protected override Task Act(GameObject Object, Func<Task> Yield)
+        protected override Task Act(ActParameters Parameters)
         {
-            Object.SetActive(ActivationState);
+            Parameters.Object.SetActive(ActivationState);
             return Task.CompletedTask;
         }
     }

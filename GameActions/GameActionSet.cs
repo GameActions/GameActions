@@ -20,14 +20,14 @@ namespace GameActions
             return result.ToArray();
         }
 
-        protected override async Task Act(GameObject Object, Func<Task> Yield)
+        protected override async Task Act(ActParameters Parameters)
         {
             List<Task> Tasks = new List<Task>();
-            foreach (var action in Actions(Object))
+            foreach (var action in Actions(Parameters.Object))
                 if (action.gameObject != gameObject)
                     Tasks.Add(action.Act());
             foreach (var task in Tasks)
-                await task;
+                await Parameters.Await(task);
         }
     }
 }

@@ -8,11 +8,11 @@ namespace GameActions
     {
         public float Duration;
 
-        protected override async Task Act(GameObject Object, Func<Task> Yield)
+        protected override async Task Act(ActParameters Parameters)
         {
             float initial_time = Time.time;
             while (Time.time - initial_time < Duration)
-                await Yield();
+                await Parameters.Yield();
         }
     }
 }
