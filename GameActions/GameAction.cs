@@ -24,7 +24,10 @@ namespace GameActions
             }
         }
 
-        private Dictionary<GameObject, AnimationToken> tokens = new Dictionary<GameObject, AnimationToken>();
+        private static Dictionary<
+            (GameObject, Type),
+            AnimationToken
+        > AnimationTokens = new Dictionary<(GameObject, Type), AnimationToken>();
 
         private AnimationToken _AnimationToken;
         private AnimationToken AnimationToken
@@ -33,9 +36,10 @@ namespace GameActions
             {
                 if (_AnimationToken == null)
                 {
-                    if (!tokens.ContainsKey(Object))
-                        tokens[Object] = new AnimationToken();
-                    _AnimationToken = tokens[Object];
+                    var key = (Object, GetType());
+                    if (!AnimationTokens.ContainsKey(key))
+                        AnimationTokens[key] = new AnimationToken();
+                    _AnimationToken = AnimationTokens[key];
                 }
                 return _AnimationToken;
             }
