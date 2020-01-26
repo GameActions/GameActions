@@ -39,6 +39,14 @@ namespace GameActions
                 return result;
             }
 
+            var mesh = Object.GetComponent<MeshRenderer>();
+            if (mesh != null)
+            {
+                result.SetColor = x => mesh.material.color = x;
+                result.GetColor = () => mesh.material.color;
+                return result;
+            }
+
             // else
             result.SetColor = x  => Debug.LogWarning("No SpriteRenderer or Image component found on the object");
             result.GetColor = () => {
