@@ -17,10 +17,7 @@ namespace GameActions
         public GameObject Object
         {
             get => GetObject();
-            set
-            {
-                _Object = value;
-            }
+            set => _Object = value;
         }
     }
 }
