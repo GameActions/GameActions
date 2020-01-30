@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 
 namespace GameActions
 {
-    public class SetActiveAction : GameAction
+    public class SetActivationAction : GameAction
     {
         public bool ActivationState = true;
 
