@@ -4,7 +4,7 @@ namespace GameActions
 {
     public abstract class GameActionWithTargetObject : GameAction
     {
-        [Tooltip("The target object to act on. This is set to this GameObject by default when null.")]
+        [Tooltip("The target object to act on; This is set to this GameObject by default when null.")]
         [SerializeField] private GameObject _Object;
 
         protected override GameObject GetObject()
