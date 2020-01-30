@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GameActions
 {
-    public class MoveAction : GameAction
+    public class AnimatePositionAction : GameAction
     {
         public Vector3 Destination;
         public float Speed = 1;

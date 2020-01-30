@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace GameActions
 {
-    public class FadeAction : GameAction
+    public class AnimateColorAction : GameAction
     {
         public Color Target;
         public float Speed = 1;
