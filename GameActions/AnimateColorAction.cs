@@ -9,7 +9,7 @@ namespace GameActions
     public class AnimateColorAction : GameActionWithTargetObject
     {
         public Color Target;
-        public float Speed = 1;
+        public float Speed = 1; // TODO: Switch to duration?
         public Interpolators.InterpolationType InterpolationType = Interpolators.InterpolationType.ConstantAcceleration;
 
         private (Func<Color> GetColor, Action<Color> SetColor) DetermineFunctions(GameObject Object)
