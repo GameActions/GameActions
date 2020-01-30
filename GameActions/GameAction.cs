@@ -24,10 +24,12 @@ namespace GameActions
             }
         }
 
-        private static Dictionary<
-            (GameObject, Type),
-            AnimationToken
-        > AnimationTokens = new Dictionary<(GameObject, Type), AnimationToken>();
+        // To store the Objects targeted by a GameAction to remove from the AnimationTokens later.
+        private static Dictionary<Type, List<GameObject>> GameActionObjects
+                 = new Dictionary<Type, List<GameObject>>();
+
+        private static Dictionary<(Type, GameObject), AnimationToken> AnimationTokens
+                 = new Dictionary<(Type, GameObject), AnimationToken>();
 
         private AnimationToken _AnimationToken;
         private AnimationToken AnimationToken
@@ -36,9 +38,14 @@ namespace GameActions
             {
                 if (_AnimationToken == null)
                 {
-                    var key = (Object, GetType());
+                    (Type Type, GameObject Object) key = (GetType(), Object);
                     if (!AnimationTokens.ContainsKey(key))
+                    {
+                        if (!GameActionObjects.ContainsKey(key.Type))
+                            GameActionObjects[key.Type] = new List<GameObject>();
+                        GameActionObjects[key.Type].Add(key.Object);
                         AnimationTokens[key] = new AnimationToken();
+                    }
                     _AnimationToken = AnimationTokens[key];
                 }
                 return _AnimationToken;
@@ -100,6 +107,17 @@ namespace GameActions
             {
                 Debug.LogError(e, this);
             }
+        }
+
+        void OnDestroy()
+        {
+            var type = GetType();
+            if (!GameActionObjects.ContainsKey(type))
+                return;
+            foreach (var obj in GameActionObjects[type])
+                AnimationTokens.Remove((type, obj));
+            GameActionObjects[type].Clear();
+            GameActionObjects.Remove(type);
         }
     }
 }
