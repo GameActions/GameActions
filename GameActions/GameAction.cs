@@ -71,6 +71,9 @@ namespace GameActions
         private class ActionTerminationException : System.Exception {}
         public async Task Act()
         {
+            if (!isActiveAndEnabled)
+                return;
+
             var token = AnimationToken.GetToken();
 
             async Task Await(Task task)
