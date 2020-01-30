@@ -69,7 +69,7 @@ namespace GameActions
         protected abstract Task Act(ActParameters Parameters);
 
         private class ActionTerminationException : System.Exception {}
-        public async Task Act() // TODO: Rename?
+        public async Task Act()
         {
             var token = AnimationToken.GetToken();
 
@@ -97,7 +97,7 @@ namespace GameActions
             catch (ActionTerminationException) {}
         }
 
-        public async void ActReturningVoid() // TODO: Rename to Start?
+        public async void StartActing()
         {
             try
             {
