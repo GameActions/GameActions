@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GameActions
 {
-    public class SetPositionAction : GameAction
+    public class SetPositionAction : GameActionWithTargetObject
     {
         public Vector3 Destination;
 

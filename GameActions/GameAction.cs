@@ -8,20 +8,9 @@ namespace GameActions
 {
     public abstract class GameAction : MonoBehaviour
     {
-        [SerializeField] private GameObject _Object;
-        public GameObject Object
+        protected virtual GameObject GetObject()
         {
-            get
-            {
-                if (_Object == null)
-                    _Object = this.gameObject;
-                return _Object;
-            }
-            set
-            {
-                _Object = value;
-                _AnimationToken = null;
-            }
+            return gameObject;
         }
 
         // To store the Objects targeted by a GameAction to remove from the AnimationTokens later.
@@ -31,14 +20,15 @@ namespace GameActions
         private static Dictionary<(Type, GameObject), AnimationToken> AnimationTokens
                  = new Dictionary<(Type, GameObject), AnimationToken>();
 
-        private AnimationToken _AnimationToken;
+        private GameObject LastObject = null;
+        private AnimationToken _AnimationToken = null;
         private AnimationToken AnimationToken
         {
             get
             {
-                if (_AnimationToken == null)
+                if (GetObject() != LastObject)
                 {
-                    (Type Type, GameObject Object) key = (GetType(), Object);
+                    (Type Type, GameObject Object) key = (GetType(), GetObject());
                     if (!AnimationTokens.ContainsKey(key))
                     {
                         if (!GameActionObjects.ContainsKey(key.Type))
@@ -92,7 +82,7 @@ namespace GameActions
             try
             {
                 await Act(new ActParameters {
-                    Object = Object,
+                    Object = GetObject(),
                     Yield = Yield,
                     Await = Await
                 });

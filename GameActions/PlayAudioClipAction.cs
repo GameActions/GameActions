@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GameActions
 {
-    public class PlayAudioClipAction : GameAction
+    public class PlayAudioClipAction : GameActionWithTargetObject
     {
         public AudioClip AudioClip = null;
 

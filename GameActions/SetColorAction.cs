@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace GameActions
 {
-    public class SetColorAction : GameAction
+    public class SetColorAction : GameActionWithTargetObject
     {
         public Color Target;
 

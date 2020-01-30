@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 
 namespace GameActions
 {
-    public class ToggleActivationAction : GameAction
+    public class ToggleActivationAction : GameActionWithTargetObject
     {
         protected override Task Act(ActParameters Parameters)
         {
