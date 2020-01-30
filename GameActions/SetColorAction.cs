@@ -10,6 +10,13 @@ namespace GameActions
 
         private void SetColor(GameObject Object, Color color)
         {
+            var graphic = Object.GetComponent<Graphic>();
+            if (graphic != null)
+            {
+                graphic.color = color;
+                return;
+            }
+
             var sprite_renderer = Object.GetComponent<SpriteRenderer>();
             if (sprite_renderer != null)
             {
@@ -17,29 +24,15 @@ namespace GameActions
                 return;
             }
 
-            var image = Object.GetComponent<Image>();
-            if (image != null)
+            var renderer = Object.GetComponent<Renderer>();
+            if (renderer != null)
             {
-                image.color = color;
-                return;
-            }
-
-            var text = Object.GetComponent<Text>();
-            if (text != null)
-            {
-                text.color = color;
-                return;
-            }
-
-            var mesh = Object.GetComponent<MeshRenderer>();
-            if (mesh != null)
-            {
-                mesh.material.color = color;
+                renderer.material.color = color;
                 return;
             }
 
             // else
-            Debug.LogWarning("No SpriteRenderer or Image component found on the object", this);
+            Debug.LogWarning("No Renderer or Graphic component found on the object", this);
         }
 
         protected override Task Act(ActParameters Parameters)

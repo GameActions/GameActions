@@ -15,6 +15,15 @@ namespace GameActions
         private (Func<Color> GetColor, Action<Color> SetColor) DetermineFunctions(GameObject Object)
         {
             (Func<Color> GetColor, Action<Color> SetColor) result;
+
+            var graphic = Object.GetComponent<Graphic>();
+            if (graphic != null)
+            {
+                result.SetColor = x  => graphic.color = x;
+                result.GetColor = () => graphic.color;
+                return result;
+            }
+
             var sprite_renderer = Object.GetComponent<SpriteRenderer>();
             if (sprite_renderer != null)
             {
@@ -23,34 +32,18 @@ namespace GameActions
                 return result;
             }
 
-            var image = Object.GetComponent<Image>();
-            if (image != null)
+            var renderer = Object.GetComponent<Renderer>();
+            if (renderer != null)
             {
-                result.SetColor = x  => image.color = x;
-                result.GetColor = () => image.color;
-                return result;
-            }
-
-            var text = Object.GetComponent<Text>();
-            if (text != null)
-            {
-                result.SetColor = x  => text.color = x;
-                result.GetColor = () => text.color;
-                return result;
-            }
-
-            var mesh = Object.GetComponent<MeshRenderer>();
-            if (mesh != null)
-            {
-                result.SetColor = x => mesh.material.color = x;
-                result.GetColor = () => mesh.material.color;
+                result.SetColor = x  => renderer.material.color = x;
+                result.GetColor = () => renderer.material.color;
                 return result;
             }
 
             // else
-            result.SetColor = x  => Debug.LogWarning("No SpriteRenderer or Image component found on the object");
+            result.SetColor = x  => Debug.LogWarning("No Renderer or Graphic component found on the object");
             result.GetColor = () => {
-                Debug.LogWarning("No SpriteRenderer or Image component found on the object");
+                Debug.LogWarning("No Renderer or Graphic component found on the object");
                 return new Color();
             };
             return result;
