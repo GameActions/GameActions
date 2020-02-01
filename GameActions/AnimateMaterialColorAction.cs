@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 namespace GameActions
 {
-    public class AnimateMaterialFloatAction : GameActionWithTargetObject
+    public class AnimateMaterialColorAction : GameActionWithTargetObject
     {
         public string PropertyName = "_PropertyName";
-        public float Value;
+        public Color Value;
         public float Duration = 1;
         public Interpolators.InterpolationType InterpolationType = Interpolators.InterpolationType.ConstantAcceleration;
 
@@ -37,22 +37,22 @@ namespace GameActions
 
             if (Duration <= 0)
             {
-                material.SetFloat(PropertyName, Value);
+                material.SetColor(PropertyName, Value);
                 return;
             }
             float Speed = 1 / Duration;
 
-            var start_value = material.GetFloat(PropertyName);
+            var start_value = material.GetColor(PropertyName);
             for (float t = 0; t < 1; t += Time.deltaTime * Speed)
             {
-                material.SetFloat(PropertyName, Mathf.Lerp(
+                material.SetColor(PropertyName, Color.Lerp(
                     start_value,
                     Value,
                     Interpolators.Interpolate(InterpolationType, t)
                 ));
                 await Parameters.Yield();
             }
-            material.SetFloat(PropertyName, Value);
+            material.SetColor(PropertyName, Value);
         }
     }
 }
