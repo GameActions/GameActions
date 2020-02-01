@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 namespace GameActions
 {
-    public class AnimateColorAction : GameActionWithTargetObject
+    public class AnimateColorAction : GameActionWithTargetObject // TODO: Implement an abstract AnimateActioin class
     {
         public Color Target;
-        public float Speed = 1; // TODO: Switch to duration?
+        public float Duration = 1;
         public Interpolators.InterpolationType InterpolationType = Interpolators.InterpolationType.ConstantAcceleration;
 
         private (Func<Color> GetColor, Action<Color> SetColor) DetermineFunctions(GameObject Object)
@@ -52,6 +52,14 @@ namespace GameActions
         protected override async Task Act(ActParameters Parameters)
         {
             var functions = DetermineFunctions(Parameters.Object);
+
+            if (Duration <= 0)
+            {
+                functions.SetColor(Target);
+                return;
+            }
+            float Speed = 1 / Duration;
+
             var start_color = functions.GetColor();
             for (float t = 0; t < 1; t += Time.deltaTime * Speed)
             {
