@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,30 +8,42 @@ namespace GameActions.Utilities
     {
         public struct Token
         {
-            private int TokenNumber;
-            AnimationToken TokenPtr;
-            Scene Scene;
+            private readonly int TokenNumber;
+            private readonly AnimationToken TokenPtr;
+            private readonly Scene Scene;
 
             public bool IsValid
             {
-                get => TokenNumber == TokenPtr.CurrentValue
+                get => (TokenPtr == null || TokenNumber == TokenPtr.CurrentValue)
                         && Application.isPlaying
                         && SceneManager.GetActiveScene() == Scene;
             }
 
-            public Token(AnimationToken TokenPtr, Scene Scene)
+            public bool IsSceneUnchangedAndPlaying
             {
-                TokenNumber = ++TokenPtr.CurrentValue;
-                this.TokenPtr = TokenPtr;
-                this.Scene = Scene;
+                get => Application.isPlaying && SceneManager.GetActiveScene() == Scene;
             }
+
+            public Token(AnimationToken TokenPtr)
+            {
+                if (TokenPtr == null)
+                    TokenNumber = 0;
+                else
+                    TokenNumber = ++TokenPtr.CurrentValue;
+                this.TokenPtr = TokenPtr;
+                Scene = SceneManager.GetActiveScene();
+            }
+
+            public static Token Default => new Token(null);
         }
 
         private int CurrentValue;
 
         public Token GetToken()
         {
-            return new Token(this, SceneManager.GetActiveScene());
+            return new Token(this);
         }
+
+        public static Token DefaultToken => Token.Default;
     }
 }
