@@ -12,7 +12,7 @@ namespace GameActions
             if (particle_system != null)
                 particle_system.Play();
             else
-                Debug.LogWarning("No ParticleSystem found.");
+                Debug.unityLogger.LogWarning("No ParticleSystem found.", this);
             return Task.CompletedTask;
         }
     }

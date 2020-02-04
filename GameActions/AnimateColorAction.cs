@@ -2,11 +2,12 @@ using System;
 using System.Threading.Tasks;
 using GameActions.Utilities;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.UI;
 
 namespace GameActions
 {
-    public class AnimateColorAction : GameActionWithTargetObject // TODO: Implement an abstract AnimateActioin class
+    public class AnimateColorAction : GameActionWithTargetObject // TODO: Implement an abstract AnimateAction class
     {
         public Color Target;
         public float Duration = 1;
@@ -41,9 +42,9 @@ namespace GameActions
             }
 
             // else
-            result.SetColor = x  => Debug.LogWarning("No Renderer or Graphic component found on the object");
+            result.SetColor = x  => Debug.unityLogger.LogWarning("No Renderer or Graphic component found on the object", this);
             result.GetColor = () => {
-                Debug.LogWarning("No Renderer or Graphic component found on the object");
+                Debug.unityLogger.LogWarning("No Renderer or Graphic component found on the object", this);
                 return new Color();
             };
             return result;

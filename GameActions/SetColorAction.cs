@@ -32,7 +32,7 @@ namespace GameActions
             }
 
             // else
-            Debug.LogWarning("No Renderer or Graphic component found on the object", this);
+            Debug.unityLogger.LogWarning("No Renderer or Graphic component found on the object", this);
         }
 
         protected override Task Act(ActParameters Parameters)
