@@ -98,7 +98,9 @@ namespace GameActions
             }
             catch (Exception e)
             {
-                Debug.LogError(e, this);
+                var token = AnimationToken.DefaultToken;
+                if (token.IsValid)
+                    Debug.LogError(e, this);
             }
         }
 
