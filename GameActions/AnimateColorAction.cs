@@ -1,23 +1,16 @@
 using System;
-using System.Threading.Tasks;
-using GameActions.Utilities;
 using UnityEngine;
-using UnityEngine.Assertions;
 using UnityEngine.UI;
 
 namespace GameActions
 {
-    public class AnimateColorAction : GameActionWithTargetObject // TODO: Implement an abstract AnimateAction class
+    public class AnimateColorAction : AnimateAction<Color, (Func<Color> GetColor, Action<Color> SetColor)>
     {
-        public Color Target;
-        public float Duration = 1;
-        public Interpolators.InterpolationType InterpolationType = Interpolators.InterpolationType.ConstantAcceleration;
-
-        private (Func<Color> GetColor, Action<Color> SetColor) DetermineFunctions(GameObject Object)
+        protected override (Func<Color> GetColor, Action<Color> SetColor) InitializeContext(ActParameters Parameters, ref bool Success)
         {
             (Func<Color> GetColor, Action<Color> SetColor) result;
 
-            var graphic = Object.GetComponent<Graphic>();
+            var graphic = Parameters.Object.GetComponent<Graphic>();
             if (graphic != null)
             {
                 result.SetColor = x  => graphic.color = x;
@@ -25,7 +18,7 @@ namespace GameActions
                 return result;
             }
 
-            var sprite_renderer = Object.GetComponent<SpriteRenderer>();
+            var sprite_renderer = Parameters.Object.GetComponent<SpriteRenderer>();
             if (sprite_renderer != null)
             {
                 result.SetColor = x  => sprite_renderer.color = x;
@@ -33,7 +26,7 @@ namespace GameActions
                 return result;
             }
 
-            var renderer = Object.GetComponent<Renderer>();
+            var renderer = Parameters.Object.GetComponent<Renderer>();
             if (renderer != null)
             {
                 result.SetColor = x  => renderer.material.color = x;
@@ -42,36 +35,26 @@ namespace GameActions
             }
 
             // else
-            result.SetColor = x  => Debug.unityLogger.LogWarning("No Renderer or Graphic component found on the object", this);
-            result.GetColor = () => {
-                Debug.unityLogger.LogWarning("No Renderer or Graphic component found on the object", this);
-                return new Color();
-            };
+            Debug.unityLogger.LogWarning("No Renderer or Graphic component found on the object", this);
+            Success = false;
+            result.SetColor = null;
+            result.GetColor = null;
             return result;
         }
 
-        protected override async Task Act(ActParameters Parameters)
+        protected override Color EvaluateStartPoint(ref (Func<Color> GetColor, Action<Color> SetColor) Context)
         {
-            var functions = DetermineFunctions(Parameters.Object);
+            return Context.GetColor();
+        }
 
-            if (Duration <= 0)
-            {
-                functions.SetColor(Target);
-                return;
-            }
-            float Speed = 1 / Duration;
+        protected override Color Lerp(Color Start, Color Target, float LerpTime)
+        {
+            return Color.Lerp(Start, Target, LerpTime);
+        }
 
-            var start_color = functions.GetColor();
-            for (float t = 0; t < 1; t += Time.deltaTime * Speed)
-            {
-                functions.SetColor(Color.Lerp(
-                    start_color,
-                    Target,
-                    Interpolators.Interpolate(InterpolationType, t)
-                ));
-                await Parameters.Yield();
-            }
-            functions.SetColor(Target);
+        protected override void Set(ref (Func<Color> GetColor, Action<Color> SetColor) Context, Color Data)
+        {
+            Context.SetColor(Data);
         }
     }
 }

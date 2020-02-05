@@ -1,35 +1,27 @@
-using System.Threading.Tasks;
-using GameActions.Utilities;
 using UnityEngine;
 
 namespace GameActions
 {
-    public class AnimatePositionAction : GameActionWithTargetObject
+    public class AnimatePositionAction : AnimateAction<Vector3, Transform>
     {
-        public Vector3 Destination;
-        public float Duration = 1;
-        public Interpolators.InterpolationType InterpolationType = Interpolators.InterpolationType.ConstantAcceleration;
-
-        protected override async Task Act(ActParameters Parameters)
+        protected override Transform InitializeContext(ActParameters Parameters, ref bool Success)
         {
-            if (Duration <= 0)
-            {
-                Parameters.Object.transform.localPosition = Destination;
-                return;
-            }
-            float Speed = 1 / Duration;
+            return Parameters.Object.transform;
+        }
 
-            var start_pos = Parameters.Object.transform.localPosition;
-            for (float t = 0; t < 1; t += Time.deltaTime * Speed)
-            {
-                Parameters.Object.transform.localPosition = Vector3.Lerp(
-                    start_pos,
-                    Destination,
-                    Interpolators.Interpolate(InterpolationType, t)
-                );
-                await Parameters.Yield();
-            }
-            Parameters.Object.transform.localPosition = Destination;
+        protected override Vector3 EvaluateStartPoint(ref Transform Context)
+        {
+            return Context.localPosition;
+        }
+
+        protected override Vector3 Lerp(Vector3 Start, Vector3 Target, float LerpTime)
+        {
+            return Vector3.Lerp(Start, Target, LerpTime);
+        }
+
+        protected override void Set(ref Transform Context, Vector3 Data)
+        {
+            Context.localPosition = Data;
         }
     }
 }
