@@ -9,9 +9,9 @@ namespace GameActions
             return Context.GetFloat(PropertyName);
         }
 
-        protected override float Lerp(float Start, float Target, float LerpTime)
+        protected override float Lerp(float A, float B, float t)
         {
-            return Mathf.Lerp(Start, Target, LerpTime);
+            return Mathf.Lerp(A, B, t);
         }
 
         protected override void Set(ref Material Context, float Data)

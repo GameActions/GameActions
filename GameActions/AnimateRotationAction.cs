@@ -22,11 +22,11 @@ namespace GameActions
             return Quaternion.Euler(Data);
         }
 
-        protected override Quaternion Lerp(Quaternion Start, Quaternion Target, float LerpTime)
+        protected override Quaternion Lerp(Quaternion A, Quaternion B, float t)
         {
             return UseSlerp
-                    ? Quaternion.Slerp(Start, Target, LerpTime)
-                    : Quaternion.Lerp(Start, Target, LerpTime);
+                    ? Quaternion.Slerp(A, B, t)
+                    : Quaternion.Lerp(A, B, t);
         }
 
         protected override void Set(ref Transform Context, Quaternion Data)

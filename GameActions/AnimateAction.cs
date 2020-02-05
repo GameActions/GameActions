@@ -16,9 +16,9 @@ namespace GameActions
         protected abstract ContextType InitializeContext(ActParameters Parameters, ref bool Success);
         protected abstract AnimationDataType EvaluateStartPoint(ref ContextType Context);
         protected abstract AnimationDataType Lerp(
-            AnimationDataType Start,
-            AnimationDataType Target,
-            float LerpTime
+            AnimationDataType A,
+            AnimationDataType B,
+            float t
         );
         protected abstract void Set(
             ref ContextType Context,

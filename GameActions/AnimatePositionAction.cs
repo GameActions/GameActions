@@ -14,9 +14,9 @@ namespace GameActions
             return Context.localPosition;
         }
 
-        protected override Vector3 Lerp(Vector3 Start, Vector3 Target, float LerpTime)
+        protected override Vector3 Lerp(Vector3 A, Vector3 B, float t)
         {
-            return Vector3.Lerp(Start, Target, LerpTime);
+            return Vector3.Lerp(A, B, t);
         }
 
         protected override void Set(ref Transform Context, Vector3 Data)

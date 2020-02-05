@@ -17,9 +17,9 @@ namespace GameActions
         protected abstract AnimationDataType EvaluateStartPoint(ref ContextType Context);
         protected abstract AnimationDataType ConvertData(AnimationPropertyType Data);
         protected abstract AnimationDataType Lerp(
-            AnimationDataType Start,
-            AnimationDataType Target,
-            float LerpTime
+            AnimationDataType A,
+            AnimationDataType B,
+            float t
         );
         protected abstract void Set(
             ref ContextType Context,

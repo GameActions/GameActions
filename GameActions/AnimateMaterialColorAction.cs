@@ -9,9 +9,9 @@ namespace GameActions
             return Context.GetColor(PropertyName);
         }
 
-        protected override Color Lerp(Color Start, Color Target, float LerpTime)
+        protected override Color Lerp(Color A, Color B, float t)
         {
-            return Color.Lerp(Start, Target, LerpTime);
+            return Color.Lerp(A, B, t);
         }
 
         protected override void Set(ref Material Context, Color Data)
