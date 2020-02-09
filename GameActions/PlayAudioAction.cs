@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace GameActions
 {
-    public class PlayAudioClipAction : GameActionWithTargetObject
+    [AddComponentMenu("GameActions/Actions/Play Audio")]
+    public class PlayAudioAction : GameActionWithTargetObject
     {
         [Tooltip(
                 "The AudioClips to play using the AudioSource on the target Object. "
