@@ -1,8 +1,10 @@
 using System.Threading.Tasks;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace GameActions
 {
+    [AddComponentMenu("GameActions/Actions/Load Scene")]
     public class LoadSceneAction : GameAction
     {
         public string SceneName;

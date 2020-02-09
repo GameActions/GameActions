@@ -104,6 +104,11 @@ namespace GameActions
             }
         }
 
+        public void StopActing()
+        {
+            AnimationToken.GetToken();
+        }
+
         void OnDestroy()
         {
             var type = GetType();

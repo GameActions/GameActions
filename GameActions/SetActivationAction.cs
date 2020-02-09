@@ -1,7 +1,9 @@
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace GameActions
 {
+    [AddComponentMenu("GameActions/Actions/Set Activation")]
     public class SetActivationAction : GameActionWithTargetObject
     {
         public bool ActivationState = true;

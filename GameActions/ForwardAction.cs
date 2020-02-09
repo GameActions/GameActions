@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace GameActions
 {
+    [AddComponentMenu("GameActions/Actions/Forward")]
     public class ForwardAction : GameAction
     {
         [Tooltip("The action to forward to")]

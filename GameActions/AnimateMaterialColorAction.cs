@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace GameActions
 {
+    [AddComponentMenu("GameActions/Actions/Animate Material Color")]
     public class AnimateMaterialColorAction : AnimateMaterialPropertyAction<Color>
     {
         protected override Color EvaluateStartPoint(ref Material Context)

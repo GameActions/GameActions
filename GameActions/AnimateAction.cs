@@ -10,6 +10,7 @@ namespace GameActions
         [Space]
         [Tooltip("Animation target value")]
         public AnimationDataType Target;
+        [Tooltip("Sets to the target immediately if Duration is equal to or less than 0")]
         public float Duration = 1;
         public Interpolators.InterpolationType InterpolationType = Interpolators.InterpolationType.ConstantAcceleration;
 

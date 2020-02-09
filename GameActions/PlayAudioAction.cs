@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace GameActions
 {
+    [AddComponentMenu("GameActions/Actions/Play Audio")]
     public class PlayAudioAction : GameActionWithTargetObject
     {
         [Tooltip(

@@ -1,7 +1,9 @@
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace GameActions
 {
+    [AddComponentMenu("GameActions/Actors/Loop")]
     public class LoopActor : SingleActionActor
     {
         private Task ActTask = Task.CompletedTask;

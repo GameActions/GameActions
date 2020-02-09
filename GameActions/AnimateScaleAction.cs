@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace GameActions
 {
+    [AddComponentMenu("GameActions/Actions/Animate Scale")]
     public class AnimateScaleAction : AnimateAction<Vector3, Transform>
     {
         protected override Transform InitializeContext(ActParameters Parameters, ref bool Success)
