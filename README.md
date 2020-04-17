@@ -10,7 +10,7 @@ Checkout the Examples to get started. Here's some brief info.
 An action instance does _something_ when its Act or StartActing method gets called.
 
 ## Container actions - ActionSet and ActionSequence
-An action that calls the Act method of its level-1 children, all at once (ActionSet), or one by one in order (ActionSequence).
+These are actions that call the Act method of the actions in their level-1 children, all at once (ActionSet), or one by one in order (ActionSequence).
 
 ## List of provided actions
 TODO
