@@ -313,7 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 196ac095d478f9caf8dfc1f5a3a5b480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Action: {fileID: 1374166068}
+  _Action: {fileID: 310954626}
 --- !u!4 &250372779
 Transform:
   m_ObjectHideFlags: 0
@@ -339,7 +339,7 @@ GameObject:
   - component: {fileID: 310954625}
   - component: {fileID: 310954626}
   m_Layer: 0
-  m_Name: ActionSequence - Cube movement
+  m_Name: ActionSequence - Cube animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -352,15 +352,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 310954624}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 440090184}
   - {fileID: 1940078901}
   - {fileID: 1210201603}
-  m_Father: {fileID: 1374166067}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &310954626
 MonoBehaviour:
@@ -475,7 +475,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 5
+    m_FontSize: 4
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -486,11 +486,12 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Loops!\n\nLoop Actor:\n  When enabled, starts an action, waits for it
-    to finish then starts it again and so on.\n\nAction Set:\n  An action that starts
-    the actions in its level-1 children at the same time and waits for all of them
-    to finish.\n\nAction Sequence:\n  An action that starts the actions in its level-1
-    children in order and waits for all of them to finish."
+  m_Text: "Basics\n\n- Loop Actor:\n  When enabled, starts an action, waits for it
+    to finish then starts it again and so on.\n\n- Action Set:\n  An action that
+    starts all of the actions in its level-1 children at the same time and waits
+    for all of them to finish.\n\n- Action Sequence:\n  An action that starts the
+    actions in its level-1 children one by one and waits for all of them to finish.\n\n-
+    Animate <X>:\n  Animates X,\n  if Duration = 0, sets X immediately."
 --- !u!222 &674685474
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -908,7 +909,7 @@ GameObject:
   - component: {fileID: 1210201603}
   - component: {fileID: 1210201604}
   m_Layer: 0
-  m_Name: ActionSet - 2
+  m_Name: ActionSet - Down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1005,50 +1006,6 @@ MonoBehaviour:
   Target: {r: 1, g: 0.504717, b: 0.72497326, a: 1}
   Duration: 0
   InterpolationType: 1
---- !u!1 &1374166065
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1374166067}
-  - component: {fileID: 1374166068}
-  m_Layer: 0
-  m_Name: ActionSet
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1374166067
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1374166065}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 310954625}
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1374166068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1374166065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edeef0f27dd5f1aeba475f223727d8b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1940078900
 GameObject:
   m_ObjectHideFlags: 0
@@ -1060,7 +1017,7 @@ GameObject:
   - component: {fileID: 1940078901}
   - component: {fileID: 1940078902}
   m_Layer: 0
-  m_Name: ActionSet - 1
+  m_Name: ActionSet - Up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
