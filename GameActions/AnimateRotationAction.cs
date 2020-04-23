@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace GameActions
 {
-    [AddComponentMenu("GameActions/Actions/Animate Rotation")]
+    [AddComponentMenu("GameActions/Actions/Animate Rotation Action")]
     public class AnimateRotationAction : AnimateActionWithDataConversion<Vector3, Quaternion, Transform>
     {
         [Space]

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace GameActions
 {
-    [AddComponentMenu("GameActions/Actions/Animate Material Float")]
+    [AddComponentMenu("GameActions/Actions/Animate Material Float Action")]
     public class AnimateMaterialFloatAction : AnimateMaterialPropertyAction<float>
     {
         protected override float EvaluateStartPoint(ref Material Context)

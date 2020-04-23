@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GameActions
 {
-    [AddComponentMenu("GameActions/Actors/Loop")]
+    [AddComponentMenu("GameActions/Actors/Loop Actor")]
     public class LoopActor : SingleActionActor
     {
         private Task ActTask = Task.CompletedTask;

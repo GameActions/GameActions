@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace GameActions
 {
-    [AddComponentMenu("GameActions/Actions/Stop GameAction")]
-    public class StopAction : GameAction
+    [AddComponentMenu("GameActions/Actions/Stop GameAction Action")]
+    public class StopGameActionAction : GameAction
     {
         [Tooltip("The action to stop")]
         public GameAction Action = null;

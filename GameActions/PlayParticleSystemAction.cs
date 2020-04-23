@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GameActions
 {
-    [AddComponentMenu("GameActions/Actions/Play Particle System")]
+    [AddComponentMenu("GameActions/Actions/Play Particle System Action")]
     public class PlayParticleSystemAction : GameActionWithTargetObject
     {
         protected override Task Act(ActParameters Parameters)

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace GameActions
 {
-    [AddComponentMenu("GameActions/Actions/Animate Color")]
+    [AddComponentMenu("GameActions/Actions/Animate Color Action")]
     public class AnimateColorAction : AnimateAction<Color, (Func<Color> GetColor, Action<Color> SetColor)>
     {
         protected override (Func<Color> GetColor, Action<Color> SetColor) InitializeContext(ActParameters Parameters, ref bool Success)

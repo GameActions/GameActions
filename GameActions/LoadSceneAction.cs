@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 namespace GameActions
 {
-    [AddComponentMenu("GameActions/Actions/Load Scene")]
+    [AddComponentMenu("GameActions/Actions/Load Scene Action")]
     public class LoadSceneAction : GameAction
     {
         public string SceneName;

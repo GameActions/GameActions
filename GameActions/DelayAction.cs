@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GameActions
 {
-    [AddComponentMenu("GameActions/Actions/Delay")]
+    [AddComponentMenu("GameActions/Actions/Delay Action")]
     public class DelayAction : GameAction
     {
         public float Duration;

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GameActions
 {
-    [AddComponentMenu("GameActions/Actions/Toggle Activation")]
+    [AddComponentMenu("GameActions/Actions/Toggle Activation Action")]
     public class ToggleActivationAction : GameActionWithTargetObject
     {
         protected override Task Act(ActParameters Parameters)

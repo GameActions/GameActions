@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GameActions
 {
-    [AddComponentMenu("GameActions/Actions/Set Activation")]
+    [AddComponentMenu("GameActions/Actions/Set Activation Action")]
     public class SetActivationAction : GameActionWithTargetObject
     {
         public bool ActivationState = true;
