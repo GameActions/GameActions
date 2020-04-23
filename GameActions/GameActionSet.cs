@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GameActions
 {
-    [AddComponentMenu("GameActions/Actions/Action Containers/Set of Actions")]
+    [AddComponentMenu("GameActions/Actions/Action Containers/Action Set")]
     public class GameActionSet : GameAction
     {
         public GameAction[] Actions(GameObject Object)
