@@ -36,7 +36,7 @@ namespace GameActions
             }
 
             // else
-            Debug.unityLogger.LogWarning("No Renderer or Graphic component found on the object", this);
+            Debug.LogWarning("No Renderer or Graphic component found on the object", this);
             Success = false;
             result.SetColor = null;
             result.GetColor = null;

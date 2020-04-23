@@ -33,7 +33,7 @@ namespace GameActions
             var context = InitializeContext(Parameters, ref Success);
             if (!Success)
             {
-                Debug.unityLogger.LogWarning("Animation initialization failed.", this);
+                Debug.LogWarning("Animation initialization failed.", this);
                 return;
             }
 

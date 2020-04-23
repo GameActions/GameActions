@@ -32,7 +32,7 @@ namespace GameActions
                     AudioSource.Play();
             }
             else
-                Debug.unityLogger.LogWarning("No AudioSource.", this);
+                Debug.LogWarning("No AudioSource.", this);
 
             return Task.CompletedTask;
         }

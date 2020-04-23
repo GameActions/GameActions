@@ -18,7 +18,7 @@ namespace GameActions
             if (graphic != null)
                 return graphic.material;
 
-            Debug.unityLogger.LogWarning("No Renderer or Graphic component found on the object", this);
+            Debug.LogWarning("No Renderer or Graphic component found on the object", this);
             Success = false;
             return null;
         }
