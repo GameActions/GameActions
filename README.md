@@ -1,5 +1,3 @@
-This is a work in progress, redesigns are expected.
-
 # GameActions (for Unity)
 GameActions is a set of easy to use Unity scripts that can be used to reduce custom scripts that do basic operations like moving objects. It simplifies basic actions and makes them modular in a way that they can be created or modified in the scene without editing a script.
 
