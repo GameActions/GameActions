@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace GameActions
 {
-    [AddComponentMenu("GameActions/Actions/Action Containers/Action Sequence")]
-    public class GameActionSequence : GameAction
+    [AddComponentMenu("GameActions/Actions/Action Containers/Random Action Set")]
+    public class GameActionRandomSet : GameAction
     {
         public GameAction[] Actions(GameObject Object)
         {
@@ -22,9 +22,9 @@ namespace GameActions
 
         protected override async Task Act(ActParameters Parameters)
         {
-            foreach (var action in Actions(Parameters.Object))
-                if (action.gameObject != gameObject)
-                    await Parameters.Await(action.Act());
+            GameAction[] actions = Actions(Parameters.Object);
+            if (actions.Length > 0)
+                await actions[Random.Range(0, actions.Length)].Act();
         }
     }
 }

@@ -52,5 +52,5 @@ When enabled and its object is active, loops the specified `Action`.
 This is the main point of GameActions, simplifying actions. These are the steps to do this:
 
   - Add a field with type `GameAction` in your script, for example `public GameAction ExampleAction`.
-  - Call `ExampleAction.StartActing();` to start it and continue, or `await ExampleAction.Act();` to wait until the action is done.
+  - Call `ExampleAction?.StartActing();` to start it and continue, or `await ExampleAction?.Act();` to wait until the action is done.
   - In the scene, after creating your action (which can be a set/sequence), drag it to the `ExampleAction` field in your script.
