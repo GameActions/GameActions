@@ -8,8 +8,9 @@ Checkout the Examples to get started. Here's some brief info.
 An action instance does _something_ when its Act or StartActing method gets called.
 An action acts only when it's enabled and its object is active.
 
-## Container actions - ActionSet and ActionSequence
-These are actions that call the Act method of the actions in their level-1 children, all at once (ActionSet), or one by one in order (ActionSequence).
+## Container actions
+These are actions that call the Act method of the actions in their level-1 children, all at once (Action Set), one by one in order (Action Sequence),
+or one of them randomly (Random Action Set).
 
 ## List of provided actions
 
